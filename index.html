@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link href="./styles.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <form class="form-container" id="form">
+      <p class="" id="error"></p>
+      <p class="form-title">Register</p>
+      <div class="form-input-container">
+        <div class="label-container"><label class="label">Username</label></div>
+        <div>
+          <input type="text" placeholder="Enter your username" id="username" />
+        </div>
+      </div>
+
+      <div class="form-input-container">
+        <div class="label-container"><label class="label">Email</label></div>
+        <div>
+          <input type="email" placeholder="Enter your email" id="email" />
+        </div>
+      </div>
+
+      <div class="form-input-container">
+        <div class="label-container"><label class="label">Password</label></div>
+        <div>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            id="password" />
+        </div>
+      </div>
+
+      <div class="form-input-container">
+        <div class="label-container"><label class="label">Password</label></div>
+        <div>
+          <input
+            type="password"
+            placeholder="Confirm your password"
+            id="confirmpassword" />
+        </div>
+      </div>
+
+      <button type="submit" class="button">Register</button>
+
+      <a href="./login.html">Have an account? Click here</a> <!-- an anchor tag used to navigate to a login page-->
+    </form>
+  </body>
+
+  <script>
+    document
+      .getElementById("form")
+      .addEventListener("submit", async function register(event) {
+        event.preventDefault();
+        try {
+          const username = document.getElementById("username").value;
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirmpassword").value;
+          const errorMessage = document.getElementById("error");
+
+          if (!username || !email || !confirmPassword || !password) {
+            return (errorMessage.textContent = "Please fill all fields");
+          }
+
+          if (password === confirmPassword) {
+            window.location.href = "./home.html";
+          } else {
+            errorMessage.textContent = "Password don't match";
+          }
+        } catch (error) {
+          console.log(error);
+          alert(error);
+        }
+      });
+  </script>
+</html>

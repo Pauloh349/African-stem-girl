@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link href="./styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <form class="form-container" id="form">  <!-- for wrapping the forms content-->
+      <p style="color: red; align-self: center" id="error"></p>
+      <p class="form-title">Login</p>
+      <div class="form-input-container">
+        <div class="label-container"><label class="label">Email</label></div>
+        <div>
+          <input type="text" placeholder="Enter your email" id="email" /> <!-- input for email -->
+        </div>
+      </div>
+
+      <div class="form-input-container">
+        <div class="label-container"><label class="label">Password</label></div>
+        <div>
+          <input
+            type="password" 
+            placeholder="Enter your password" 
+            id="password" /> <!-- input for password the password is displayed in dots -->
+        </div>
+      </div>
+
+      <button type="submit" class="button">Log in</button>
+
+      <a href="./index.html">Dont have an account? Click here<a>
+    </form>
+  </body>
+  <script>
+    document
+      .getElementById("form") //we get the form
+      .addEventListener("submit", async function login(event) {
+        event.preventDefault(); //this prevents the form from reloading
+
+        try {
+          const testEmail = "Test@gmail.com"; //We set an email for testing purposes
+          const testPassword = "123456"; //We set a password for testing purposes
+          const email = document.getElementById("email").value; //we get the email that has been entered by user
+          const password = document.getElementById("password").value; //we get the password that has been entered by user
+          const errorMessage = document.getElementById("error"); //set up a paragraph where errors will be displayed
+
+          if(!email || !password) 
+          return errorMessage.textContent='Please fill in all fileds'; //displays error message when the form is empty
+
+          if (
+            email.toLowerCase() === testEmail.toLowerCase() &&
+            password === testPassword //Checking if the email and password entered matches the set email and password
+          ) {
+            window.location.href = "./home.html"; //it opens the home page if password and email are correct
+          } else {
+            errorMessage.textContent = "Wrong credentials"; //displays an error message when email or password is not correct
+          }
+        } catch (error) {
+          console.log(error); 
+        }
+      });
+  </script>
+</html>
